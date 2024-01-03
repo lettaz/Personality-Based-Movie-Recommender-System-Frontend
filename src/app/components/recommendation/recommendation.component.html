@@ -1,0 +1,57 @@
+<div class="h-screen bg-white">
+  <div class="h-full m-0">
+    <div class="flex h-full">
+      <app-side-bar></app-side-bar>
+      <div class="grow ml-[60px]">
+        <app-header></app-header>
+        <div class="p-2 px-7 lg:px-6 pb-12 mt-[55px]">
+          <div class="w-full p-2 pb-6 lg:p-6 border border-gray-300 rounded-xl my-4">
+            <div>
+              <p><strong>Personality Data Scores</strong></p>
+              <ul>
+                <li>Openness: {{personalityData?.openness}}</li>
+                <li>Agreeableness: {{personalityData?.agreeableness}}</li>
+                <li>Emotional Stability: {{personalityData?.emotional_stability}}</li>
+                <li>Conscientiousness: {{personalityData?.conscientiousness}}</li>
+                <li>Extraversion: {{personalityData?.extraversion}}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="w-full p-2 pb-6 lg:p-6 border border-gray-300 rounded-xl my-4">
+            <div class="flex justify-between">
+              <h1 class="text-xl">Movie Recommendation for {{userId}}</h1>
+              <div>
+                <input type="number" [(ngModel)]="topN" placeholder="Top N" class="p-2 border border-gray-300 rounded-md mr-2">
+                <input type="number" [(ngModel)]="kValue" placeholder="K Value" class="p-2 border border-gray-300 rounded-md">
+                <button (click)="fetchMovieRecommendations()" class="px-4 py-2 bg-blue-500 text-white text-sm rounded-md ml-2">Update</button>
+              </div>
+            </div>
+
+            <p *ngIf="isLoading" class="text-center py-4">Loading recommendations...</p>
+
+            <div *ngIf="!isLoading">
+              <div class="w-full overflow-auto px-0 lg:px-6 mt-8 pb-6">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="w-full text-sm">
+                  <thead class="text-gray-800 border-b border-gray-200 h-[50px]">
+                    <tr class="h-[50px] border-b border-gray-200" class="font-medium">
+                      <td>ID</td>
+                      <td>Movie Title</td>
+                      <td>Rating</td>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="h-[40px] border-b border-gray-200" *ngFor="let movie of movieRecommendations?.recommendations">
+                      <td>{{movie[0]}}</td>
+                      <td>{{movie[1]}}</td>
+                      <td>{{movie[2] | number:'1.1-2'}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,40 @@
+<div class="h-screen bg-white">
+    <div class=" h-full m-0">
+      <div class="flex h-full">
+        <app-side-bar></app-side-bar>
+        <div class="grow ml-[60px]">
+          <app-header></app-header>
+          <div class=" p-2 px-7 lg:px-6 pb-12 mt-[55px] ">
+            <div>
+                <div  class="w-full p-2 pb-6 lg:p-6 border border-gray-300 rounded-xl my-4">
+                    <h1 class="text-xl">
+                        Input Your User Id
+                    </h1>
+                
+                    <div class="my-6 space-y-4">
+                        <div class="grid lg:flex lg:justify-between lg:space-x-6">
+                            <div class="grid grow space-y-2">
+                                <div><span class="text-xs">user_id</span></div>
+                                <input type="text" [(ngModel)]="userId" class="p-2 border border-gray-300 rounded-md" id="name" />
+                            </div>
+                        </div>
+                
+                        <!-- <div class="bg-green-500 text-white p-4 rounded">
+                            Device details updated successfully!
+                        </div>           -->
+                                         
+                    </div>
+                    <div>
+                        <div class="flex justify-start space-x-6 my-12">
+                            <button (click)="onGetRecommendation()" class="px-6 py-2 bg-gray-900 text-white text-sm rounded-sm">Get Recommendation</button>
+                            <button class="px-6 py-2 bg-gray-300 text-sm rounded-sm">Create_ID</button>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
