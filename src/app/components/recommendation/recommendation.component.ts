@@ -19,8 +19,10 @@ export class RecommendationComponent implements AfterViewInit, OnDestroy, OnInit
   userId: string = '';
   personalityData: any;
   movieRecommendations: any;
+  genreRecommendations: any;
   topN: number = 10; // Default value for topN
   kValue: number = 50; // Default value for k
+  num_genre: number = 10; // Default value for number of genre
   isLoading: boolean = true; // Loading state indicator
   isDtInitialized: boolean = false;
 
@@ -50,6 +52,7 @@ export class RecommendationComponent implements AfterViewInit, OnDestroy, OnInit
     this.dataService.getUserPersonalityData(this.userId).subscribe(data => {
       this.personalityData = data;
       this.fetchMovieRecommendations();
+      this.fetchGenreRecommendations();
     });
   }
 
@@ -64,6 +67,19 @@ export class RecommendationComponent implements AfterViewInit, OnDestroy, OnInit
       this.isLoading = false; // Also stop loading in case of error
     });
   }
+
+  fetchGenreRecommendations(): void {
+    this.isLoading = true; // Start loading
+    this.dataService.getGenreRecommendations(this.userId, this.num_genre, this.kValue).subscribe(data => {
+      this.genreRecommendations = data;
+      this.isLoading = false; // Stop loading once data is fetched
+    }, error => {
+      console.error('Error fetching movie recommendations:', error);
+      this.isLoading = false; // Also stop loading in case of error
+    });
+  }
+
+
 
   rerenderTable(): void {
     if (this.dtElement && this.dtElement.dtInstance) {

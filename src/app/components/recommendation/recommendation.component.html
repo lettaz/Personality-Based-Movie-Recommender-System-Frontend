@@ -50,6 +50,27 @@
               </div>
             </div>
           </div>
+          <div class="w-full p-2 pb-6 lg:p-6 border border-gray-300 rounded-xl my-4">
+            <div class="flex justify-between">
+              <h1 class="text-xl">Genre Recommendation for {{userId}}</h1>
+              <div>
+                <!-- <input type="number" [(ngModel)]="num_genre" placeholder="Number of Genre" class="p-2 border border-gray-300 rounded-md mr-2"> -->
+                <input type="number" [(ngModel)]="kValue" placeholder="K Value" class="p-2 border border-gray-300 rounded-md">
+                <button (click)="fetchGenreRecommendations()" class="px-4 py-2 bg-blue-500 text-white text-sm rounded-md ml-2">Update</button>
+              </div>
+            </div>
+
+            <p *ngIf="isLoading" class="text-center py-4">Loading genre recommendations...</p>
+
+            <div *ngIf="!isLoading">
+              <div class="w-full overflow-auto px-0 lg:px-6 mt-8 pb-6">
+                  <p><strong>Genre Recommendations</strong></p>
+                  <ul>
+                    <li *ngFor="let genre of genreRecommendations?.recommendations">{{genre}}</li>
+                  </ul>
+              </div>
+            </div>            
+          </div>
         </div>
       </div>
     </div>

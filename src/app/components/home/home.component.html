@@ -5,7 +5,7 @@
         <div class="grow ml-[60px]">
           <app-header></app-header>
           <div class=" p-2 px-7 lg:px-6 pb-12 mt-[55px] ">
-            <div>
+            <div class="user-id-section">
                 <div  class="w-full p-2 pb-6 lg:p-6 border border-gray-300 rounded-xl my-4">
                     <h1 class="text-xl">
                         Input Your User Id
@@ -26,12 +26,80 @@
                     </div>
                     <div>
                         <div class="flex justify-start space-x-6 my-12">
-                            <button (click)="onGetRecommendation()" class="px-6 py-2 bg-gray-900 text-white text-sm rounded-sm">Get Recommendation</button>
-                            <button class="px-6 py-2 bg-gray-300 text-sm rounded-sm">Create_ID</button>
+                            <button (click)="onGetRecommendation(userId)" class="px-6 py-2 bg-gray-900 text-white text-sm rounded-sm">Get Recommendation</button>
+                            <button (click)="togglePersonalityForm()" class="px-6 py-2 bg-gray-300 text-sm rounded-sm">Create ID</button>
                         </div>
                     </div>
                 </div>
-                
+
+                <div *ngIf="showPersonalityForm" id="create_id">
+                    <div  class="w-full p-2 pb-6 lg:p-6 border border-gray-300 rounded-xl my-4">
+                        <h1 class="text-xl">
+                            Input Your User Id
+                        </h1>
+                    
+                        <div class="my-6 space-y-4">
+                            <div class="grid lg:flex lg:justify-between lg:space-x-6">
+                                <div class="grid grow space-y-2">
+                                    <label for="agreeableness" class="text-base">How much do you value cooperation over competition? (0-7)</label>
+                                    <input type="range" [(ngModel)]="agreeableness" min="0" max="7" step="0.1" class="w-full" id="agreeableness" />
+                                    <div class="text-center text-xs">Value: {{ agreeableness }}</div>
+                                </div>
+                            </div>           
+                        </div>                        
+
+                        <div class="my-6 space-y-4">
+                            <div class="grid lg:flex lg:justify-between lg:space-x-6">
+                                <div class="grid grow space-y-2">
+                                    <label for="conscientiousness" class="text-base">How often do you organize tasks and plan ahead? (0-7)</label>
+                                    <input type="range" [(ngModel)]="conscientiousness" min="0" max="7" step="0.1" class="w-full" id="conscientiousness" />
+                                    <div class="text-center text-xs">Value: {{ conscientiousness }}</div>
+                                </div>
+                            </div>           
+                        </div>
+                        
+
+                        <div class="my-6 space-y-4">
+                            <div class="grid lg:flex lg:justify-between lg:space-x-6">
+                                <div class="grid grow space-y-2">
+                                    <label for="emotional_stability" class="text-base">How well do you handle stress and unexpected events? (0-7)</label>
+                                    <input type="range" [(ngModel)]="emotional_stability" min="0" max="7" step="0.1" class="w-full" id="emotional_stability" />
+                                    <div class="text-center text-xs">Value: {{ emotional_stability }}</div>
+                                </div>
+                            </div>           
+                        </div>
+                        
+
+                        <div class="my-6 space-y-4">
+                            <div class="grid lg:flex lg:justify-between lg:space-x-6">
+                                <div class="grid grow space-y-2">
+                                    <label for="extraversion" class="text-base">How much do you enjoy social interactions and being outgoing? (0-7)</label>
+                                    <input type="range" [(ngModel)]="extraversion" min="0" max="7" step="0.1" class="w-full" id="extraversion" />
+                                    <div class="text-center text-xs">Value: {{ extraversion }}</div>
+                                </div>
+                            </div>           
+                        </div>
+                        
+
+                        <div class="my-6 space-y-4">
+                            <div class="grid lg:flex lg:justify-between lg:space-x-6">
+                                <div class="grid grow space-y-2">
+                                    <label for="openness" class="text-base">How open are you to new experiences and different perspectives? (0-7)</label>
+                                    <input type="range" [(ngModel)]="openness" min="0" max="7" step="0.1" class="w-full" id="openness" />
+                                    <div class="text-center text-xs">Value: {{ openness }}</div>
+                                </div>
+                            </div>           
+                        </div>
+
+
+                        <div>
+                            <div class="flex justify-start space-x-6 my-12">
+                                <button (click)="onSubmitPersonalityForm()" class="px-6 py-2 bg-gray-900 text-white text-sm rounded-sm">Get Recommendation</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                               
             </div>
           </div>
         </div>

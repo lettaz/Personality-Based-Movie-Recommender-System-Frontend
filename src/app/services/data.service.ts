@@ -11,6 +11,10 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
+  createNewUser(personalityData: any) {
+    return this.http.post<{ user_id: string }>(`${this.apiUrl}/users/new`, personalityData);
+  }
+
   getUserPersonalityData(userId: string): Observable<any> {
     return this.http.get(`${this.apiUrl}/personality/${userId}`);
   }
@@ -18,5 +22,10 @@ export class DataService {
   getMovieRecommendations(userId: string, topN: number, k: number): Observable<any> {
     const body = { user_id: userId, top_n: topN, k: k };
     return this.http.post(`${this.apiUrl}/recommendations/movies`, body);
+  }
+
+  getGenreRecommendations(userId: string, num_genre: number, k: number): Observable<any> {
+    const body = { user_id: userId, num_genre: num_genre, k: k };
+    return this.http.post(`${this.apiUrl}/recommendations/genre`, body);
   }
 }
